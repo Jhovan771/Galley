@@ -1,0 +1,188 @@
+import React, { useState } from "react";
+import { FaTimes } from "react-icons/fa";
+import { CiMenuBurger, CiSearch } from "react-icons/ci";
+import { IoMdHome } from "react-icons/io";
+import { GrGallery } from "react-icons/gr";
+import { FcSearch } from "react-icons/fc";
+import { TiUploadOutline } from "react-icons/ti";
+import { Link } from "react-router-dom";
+
+const NavAdm = () => {
+  const [click, setClick] = useState(false);
+
+  const handleClick = () => setClick(!click);
+
+  const content = (
+    <>
+      <div className='lg:hidden block absolute bg-[#daf8e3] top-10 w-full left-0 right-0 transition'>
+        <ul className='text-center text-xl p-20'>
+          <li className='my-4 py-4 border-b border-[#005582] text-[#005582] hover:border-[#0086ad] hover:rounded font-serif'>
+            <Link
+              className='flex items-center justify-center'
+              to='/'
+              onClick={handleClick}>
+              <IoMdHome className='pr-1 text-[22px]' />
+              HOME
+            </Link>
+          </li>
+          <li className='my-4 py-4 border-b border-[#005582] text-[#005582] hover:border-[#0086ad] hover:rounded  font-serif'>
+            <Link
+              className='flex items-center justify-center'
+              to='#'
+              onClick={handleClick}>
+              <GrGallery className='pr-2 text-[22px]' />
+              GALLERY
+            </Link>
+          </li>
+          <li className='my-4 py-4 border-b border-[#005582] text-[#005582] hover:border-[#0086ad] hover:rounded  font-serif'>
+            <Link
+              className='flex items-center justify-center'
+              to='/upload'
+              onClick={handleClick}>
+              <TiUploadOutline className='pr-2 text-[28px]' />
+              UPLOAD
+            </Link>
+          </li>
+          <li className='border-b hover:text-[#0086ad] transition border-[#005582] text-[#005582] hover:border-[#0086ad] cursor-pointer font-mono'>
+            {/* <div className='relative flex items-center'>
+              <FcSearch className='absolute left-2 text-[22px]' />
+              <input
+                className='h-[32px] pl-10 border border-[#005582] rounded'
+                type='text'
+                placeholder='Search'
+              />
+            </div> */}
+            <div className='flex py-4'>
+              <select className='h-[32px] w-full text-center border border-[#005582] rounded text-[#005582]'>
+                <option value=''>Month</option>
+                <option value='January'>January</option>
+                <option value='February'>February</option>
+                <option value='March'>March</option>
+                <option value='April'>April</option>
+                <option value='May'>May</option>
+                <option value='June'>June</option>
+                <option value='July'>July</option>
+                <option value='August'>August</option>
+                <option value='September'>September</option>
+                <option value='October'>October</option>
+                <option value='November'>November</option>
+                <option value='December'>December</option>
+              </select>
+
+              <select className='ml-4 h-[32px] border border-[#005582] rounded text-[#005582] px-2'>
+                <option value=''>Day</option>
+                {Array.from({ length: 31 }, (_, i) => (
+                  <option key={i + 1} value={i + 1}>
+                    {i + 1}
+                  </option>
+                ))}
+              </select>
+
+              <select className='ml-4 h-[32px] border border-[#005582] rounded text-[#005582] px-2'>
+                <option value=''>Year</option>
+                {Array.from({ length: 100 }, (_, i) => {
+                  const year = new Date().getFullYear() - i;
+                  return (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  );
+                })}
+              </select>
+            </div>
+
+            <button className='ml-4 my-2 bg-[#97ebdb] p-1 px-3 rounded-md hover:bg-[#beede4] w-[11rem]'>
+              Search
+            </button>
+          </li>
+        </ul>
+      </div>
+    </>
+  );
+
+  return (
+    <nav className='fixed top-0 z-50 w-full bg-[#daf8e3]  drop-shadow-md'>
+      <div className='h-16 flex justify-between items-center px-16 text-primary lg:py-5'>
+        <h3 className='flex flex-col text-[18px] text-[#005582] font-mono p-2'>
+          <span className='border-b-2'>
+            <span className='font-serif font-bold'>G</span>alley
+          </span>
+          <span className='text-center text-[12px]'>Inventory</span>
+        </h3>
+        <div className='lg:flex md:flex lg:flex-1 items-center justify-end font-normal hidden'>
+          <div className='flex-10'>
+            <ul className='flex gap-8 mr-16 text-[18px]'>
+              <li className='hover:text-[#0086ad] transition border-b-2 border-[#005582] text-[#005582] hover:border-[#0086ad] cursor-pointer  font-mono'>
+                <Link className='flex items-center justify-center' to='/'>
+                  <IoMdHome className='pr-1 text-[22px]' />
+                  HOME
+                </Link>
+              </li>
+              <li className='hover:text-[#0086ad] transition border-b-2 border-[#005582] text-[#005582] hover:border-[#0086ad] cursor-pointer  font-mono'>
+                <Link className='flex items-center justify-center' to='#'>
+                  <GrGallery className='pr-2 text-[22px]' />
+                  GALLERY
+                </Link>
+              </li>
+              <li className='hover:text-[#0086ad] transition border-b-2 border-[#005582] text-[#005582] hover:border-[#0086ad] cursor-pointer  font-mono'>
+                <Link className='flex items-center justify-center' to='/upload'>
+                  <TiUploadOutline className='pr-2 text-[28px]' />
+                  UPLOAD
+                </Link>
+              </li>
+              <li className='flex items-center justify-center hover:text-[#0086ad] transition border-[#005582] text-[#005582] hover:border-[#0086ad] cursor-pointer font-mono'>
+                <select className='h-[32px] w-[6rem] text-center border border-[#005582] rounded text-[#005582] px-2'>
+                  <option value=''>Month</option>
+                  <option value='January'>January</option>
+                  <option value='February'>February</option>
+                  <option value='March'>March</option>
+                  <option value='April'>April</option>
+                  <option value='May'>May</option>
+                  <option value='June'>June</option>
+                  <option value='July'>July</option>
+                  <option value='August'>August</option>
+                  <option value='September'>September</option>
+                  <option value='October'>October</option>
+                  <option value='November'>November</option>
+                  <option value='December'>December</option>
+                </select>
+
+                <select className='ml-4 h-[32px] border border-[#005582] rounded text-[#005582] px-2'>
+                  <option value=''>Day</option>
+                  {Array.from({ length: 31 }, (_, i) => (
+                    <option key={i + 1} value={i + 1}>
+                      {i + 1}
+                    </option>
+                  ))}
+                </select>
+
+                <select className='ml-4 h-[32px] border border-[#005582] rounded text-[#005582] px-2'>
+                  <option value=''>Year</option>
+                  {Array.from({ length: 100 }, (_, i) => {
+                    const year = new Date().getFullYear() - i;
+                    return (
+                      <option key={year} value={year}>
+                        {year}
+                      </option>
+                    );
+                  })}
+                </select>
+                <button className='ml-4 bg-[#97ebdb] p-1 px-3 rounded-md hover:bg-[#beede4]'>
+                  Search
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div>{click && content}</div>
+        <button
+          className='block sm:hidden transition text-[#005582]'
+          onClick={handleClick}>
+          {click ? <FaTimes /> : <CiMenuBurger />}
+        </button>
+      </div>
+    </nav>
+  );
+};
+
+export default NavAdm;
